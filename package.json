@@ -1,0 +1,24 @@
+{
+  "name": "caley-weather-app",
+  "version": "1.0.0",
+  "description": "Asynchronous weather application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelCaleyWhaley/caley-weather-app.git"
+  },
+  "keywords": [
+    "node",
+    "node.js",
+    "weatherApp"
+  ],
+  "author": "Michael Caley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelCaleyWhaley/caley-weather-app/issues"
+  },
+  "homepage": "https://github.com/michaelCaleyWhaley/caley-weather-app#readme"
+}
