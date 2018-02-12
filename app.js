@@ -1,25 +1,37 @@
+// google api key: 'AIzaSyAs2bVbCOCdLUN3defSZQ1wNsI4-XsR7js'
 console.log('');
 console.log('Example command: node app.js --address "1 Curtain Place"');
 console.log('');
 
-const request = require('request');
 const yargs = require('yargs');
-// google api key: 'AIzaSyAs2bVbCOCdLUN3defSZQ1wNsI4-XsR7js'
+const geoCode = require('./geocode/geoCode.js');
+const request = require('request');
 
-const argv = yargs.argv.address;
-let urlQuery = yargs.argv.address.split(' ').join('%20');
-const googleUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-urlQuery = googleUrl.concat(urlQuery);
+const argv = yargs
+    .options({
+        a: {
+            demand: true,
+            alias: 'address',
+            describe: 'Address to fetch weather for',
+            string: true
+        }
+    }).help()
+    .alias('help', 'h')
+    .argv.address;
 
-request({
-    url: urlQuery,
-    json: true
-}, function (error, response, body) {
-    if (body.results.length !== 0) {
-        console.log(JSON.stringify(`Address: ${body.results[0].formatted_address}`, undefined, 2));
-        console.log(JSON.stringify(`Lattitude: ${body.results[0].geometry.location.lat}`, undefined, 2));
-        console.log(JSON.stringify(`longitude: ${body.results[0].geometry.location.lng}`, undefined, 2));
+geoCode.geoCodeAddress(yargs.argv.address, (errorMessage, results) => {
+    if(errorMessage){
+        console.log(errorMessage);
     } else {
-        console.log(body.error_message);
+        // console.log(results);
+        request({
+            url: 'https://api.darksky.net/forecast/0482e09a8a76cc8fb9236b92f4e6d6a2/' + results.lattitude + ',' + results.lattitude,
+            json: true
+        }, (error, response, body) => {
+            if (error) {console.log('Unable to connect to forecast.io');}
+            console.log('Current summary: ' + body.currently.summary);
+            console.log('Current temperature: ' + body.currently.temperature);
+            console.log('Daily summary: ' + body.daily.summary);
+        });
     }
 });
