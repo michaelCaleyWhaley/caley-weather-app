@@ -5,5 +5,5 @@ Once the geolocation has been collected it is sent to Forecast.io in the form of
 
 ## Example commands
 
-node app.js -address "Hull"
+node app.js -address "Hull"<br/>
 node app.js -a "Hull"
