@@ -1,7 +1,7 @@
 const request = require('request');
 
 var geoCodeAddress = (urlQuery, callback) => {
-    urlQuery = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(urlQuery);
+    urlQuery = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(urlQuery);
     request({
         url: urlQuery,
         json: true
