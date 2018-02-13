@@ -25,13 +25,14 @@ geoCode.geoCodeAddress(yargs.argv.address, (errorMessage, results) => {
     } else {
         // console.log(results);
         request({
-            url: 'https://api.darksky.net/forecast/0482e09a8a76cc8fb9236b92f4e6d6a2/' + results.lattitude + ',' + results.lattitude,
+            url: 'https://api.darksky.net/forecast/0482e09a8a76cc8fb9236b92f4e6d6a2/' + results.lattitude + ',' + results.lattitude + '?units=si',
             json: true
         }, (error, response, body) => {
             if (error) {console.log('Unable to connect to forecast.io');}
             console.log('Current summary: ' + body.currently.summary);
             console.log('Current temperature: ' + body.currently.temperature);
             console.log('Daily summary: ' + body.daily.summary);
+            // console.log(body);
         });
     }
 });
