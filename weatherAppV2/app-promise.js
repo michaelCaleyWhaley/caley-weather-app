@@ -1,17 +1,19 @@
-
-const yargs = require('yargs');
+// default location London, pass -a "address" for location
+const yargs = require('yargs')
+.command('--address "London"', '*');
 // axios uses built in promises
 const axios = require('axios');
 
 const argv = yargs
     .options({
         a: {
-            demand: true,
+            demand: false,
             alias: 'address',
             describe: 'Address to fetch weather for',
             string: true
         }
-    }).help()
+    })
+    .help()
     .alias('help', 'h')
     .argv.address;
 
