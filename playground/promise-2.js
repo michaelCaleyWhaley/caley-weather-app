@@ -19,7 +19,7 @@ var geocodeAddress = (address) => {
     });
 };
 
-geocodeAddress('hu16').then((response) => {
+geocodeAddress('n1').then((response) => {
     console.log(response);
 }).catch((errorMessage) => {
     console.log(errorMessage);
